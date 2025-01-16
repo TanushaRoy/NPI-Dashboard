@@ -1,6 +1,9 @@
+// "use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Sidebar from "@/components/Sidebar";
+import Menubar from "@/components/Menubar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +31,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col md:flex-row h-screen">
+          <aside className="hidden md:block w-64 bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300">
+            <Sidebar />
+          </aside>
+
+          <main className="flex-grow">
+          
+
+            {children}
+          </main>
+
+          <nav className="md:hidden fixed bottom-0 w-full bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300">
+            <Menubar />
+          </nav>
+        </div>
       </body>
     </html>
   );
